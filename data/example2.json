@@ -1,0 +1,55 @@
+{
+  "networks": [
+    {
+      "name": "Metro",
+      "nodes": [
+        "A", "B", "C", "D", "E"
+      ],
+      "edges": [
+        { "v1": "A", "v2": "C", "data": { "color": "red", "capacity": 100, "price": 5 } },
+        { "v1": "C", "v2": "D", "data": { "color": "red", "capacity": 100, "price": 5 } },
+        { "v1": "D", "v2": "E", "data": { "color": "red", "capacity": 100, "price": 5 } },
+        { "v1": "B", "v2": "C", "data": { "color": "blue", "capacity": 80, "price": 10 } },
+        { "v1": "C", "v2": "D", "data": { "color": "blue", "capacity": 80, "price": 10 } },
+        { "v1": "B", "v2": "C", "data": { "color": "green", "capacity": 60, "price": 15 } }
+      ]
+    },
+    {
+      "name": "Bus",
+      "nodes": [
+        "A", "B", "C", "D", "E"
+      ],
+      "edges": [
+        { "v1": "A", "v2": "B", "data": { "color": "Bus", "capacity": 200, "price": 5 } },
+        { "v1": "A", "v2": "C", "data": { "color": "Bus", "capacity": 200, "price": 5 } },
+        { "v1": "C", "v2": "E", "data": { "color": "Bus", "capacity": 200, "price": 5 } },
+        { "v1": "D", "v2": "E", "data": { "color": "Bus", "capacity": 200, "price": 5 } }
+      ]
+    }
+  ],
+  "demands": [
+    {
+      "s": "A",
+      "t": "E",
+      "d": 400
+    },
+    {
+      "s": "B",
+      "t": "D",
+      "d": 300
+    },
+    {
+      "s": "C",
+      "t": "E",
+      "d": 200
+    }
+  ],
+  "k": {
+    "Metro": {
+      "red": 1,
+      "blue": 1,
+      "green": 1
+    },
+    "Bus": 2
+  }
+}

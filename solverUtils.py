@@ -15,7 +15,7 @@ def getAllPossibleRoutes(graph, demands, max_hops=3):
     R_ij = []
     
     # --- Constraint: Limit the number of alternative routes ---
-    MAX_ROUTES_PER_DEMAND = 8 
+    MAX_ROUTES_PER_DEMAND = 5 
     
     # Iterate over the list of demand dictionaries
     for demand in demands:
@@ -97,7 +97,7 @@ def addVarsForSolver(graph, R_ij):
         color = data.get('color', 'default')
         # Create a unique name: e.g., 'f_A-B-red'
         f_e_name = f"f_{u}-{v}-{color}"
-        f_e_var = Int(f_e_name)
+        f_e_var = Real(f_e_name)
         
         # Add the f_e variable to the edge data
         data['f_e'] = f_e_var
@@ -105,7 +105,7 @@ def addVarsForSolver(graph, R_ij):
         # 1b. Handle null price: if price is missing, add an Int variable
         if data.get('price') is None:
             price_name = f"p_{u}-{v}-{color}"
-            price_var = Int(price_name)
+            price_var = Real(price_name)
             # Add the Z3 variable for price to the edge data
             data['price'] = price_var
 
@@ -116,7 +116,7 @@ def addVarsForSolver(graph, R_ij):
         for j, route in enumerate(demand_routes):
             # Create a unique name for the route flow: e.g., 'flow_0_1' (Demand 0, Route 1)
             f_R_name = f"flow_{i}_{j}"
-            f_R_var = Int(f_R_name)
+            f_R_var = Real(f_R_name)
             
             demand_f_R_vars.append(f_R_var)
             

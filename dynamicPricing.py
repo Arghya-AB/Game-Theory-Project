@@ -32,12 +32,6 @@ def solveUnknownPrices(graph, demands, R_ij):
     graph, f_R_vars = addVarsForSolver(graph, R_ij)
     # The graph.edges now has price vars (if price was null) and flow vars (f_e) added to each edge.
 
-    # --- Add Constraints ---
-    # --- Add Non-negativity Constraint for all route flows (f_R) ---
-    for f_R_list in f_R_vars:
-        for f_R in f_R_list:
-            solver.add(f_R >= 0)
-
     # C1: Edge flow definition: Sum_R_flow_R = f_e for all e in E
     # Iterate over all edges in the graph
     for u, v, key, data in graph.edges(keys=True, data=True):
@@ -64,15 +58,17 @@ def solveUnknownPrices(graph, demands, R_ij):
             # If routes exist, the flow is the sum of those route flows.
             solver.add(f_e == Sum(sum_f_R_on_e))
         
-    # C2: Capacity constraint: f_e <= e.capacity for all e in E
-    for u, v, key, data in graph.edges(keys=True, data=True):
+        # C2: Capacity constraint: f_e <= e.capacity for all e in E
         f_e = data['f_e']
         capacity = data.get('capacity', Int(500)) # Use a large number if capacity is missing
         solver.add(f_e <= capacity)
-    
+        
     T_i_vars = [] 
     TOLERANCE_FLOW = 1
     TOLERANCE_COST = 5
+    T_MAX = 
+    T_MIN = 
+    
     for i, demand in enumerate(demands):
         # 1. C3: Demand conservation
         d_i = demand["d"]
@@ -104,11 +100,16 @@ def solveUnknownPrices(graph, demands, R_ij):
             # We use Implies (A => B) which is equivalent to NOT A OR B.
             
             # Use a small tolerance for "strictly positive" (e.g., 0.001) for Implies
-            solver.add(Implies(
-                f_R >= TOLERANCE_FLOW,
-                And(cost_R <= T_i + TOLERANCE_COST, cost_R >= T_i - TOLERANCE_COST)
-            ))
-            
+            # solver.add(Implies(
+            #     f_R >= TOLERANCE_FLOW,
+            #     And(cost_R <= T_i + TOLERANCE_COST, cost_R >= T_i - TOLERANCE_COST)
+            # ))
+            solver.add(And(cost_R <= T_i + TOLERANCE_COST, cost_R >= T_i - TOLERANCE_COST))
+        
+    #  Add Non-negativity Constraint for all route flows (f_R)
+    for f_R_list in f_R_vars:
+        for f_R in f_R_list:
+            solver.add(f_R >= 0)
 
     # Add Objective Function
     objective = getObjectiveExpr(graph, R_ij, f_R_vars)
