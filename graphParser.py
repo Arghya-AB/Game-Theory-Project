@@ -54,7 +54,7 @@ def writeGraphToJSON(graph, outputfile):
                 data[key] = None
     for u, v, key, data in clean_graph.edges(keys=True, data=True):
         clean_attributes(data)
-    new_graph_data = json_graph.node_link_data(clean_graph)
+    new_graph_data = json_graph.node_link_data(clean_graph,edges="edges")
     if os.path.exists(outputfile):
         with open(outputfile, 'r') as f:
             file_data = json.load(f)
