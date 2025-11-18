@@ -5,16 +5,16 @@
             "nodes": [
                 "A", "B", "C", "D", "E", "F", "G"
             ],
-            "edges": [
-                {"v1": "A", "v2": "C", "data": {"color":"red","capacity":100,"price":5}},
-                {"v1": "C", "v2": "D", "data": {"color":"red","capacity":100,"price":5}},
-                {"v1": "D", "v2": "E", "data": {"color":"red","capacity":100,"price":5}},
-                {"v1": "B", "v2": "C", "data": {"color":"blue","capacity":80,"price":10}},
-                {"v1": "C", "v2": "D", "data": {"color":"blue","capacity":80,"price":10}},
-                {"v1": "D", "v2": "F", "data": {"color":"blue","capacity":80,"price":10}},
-                {"v1": "B", "v2": "C", "data": {"color":"green","capacity":60,"price":15}},
-                {"v1": "C", "v2": "D", "data": {"color":"green","capacity":60,"price":15}},
-                {"v1": "D", "v2": "G", "data": {"color":"green","capacity":60,"price":15}}
+            "edge_list": [
+                "A C {'color': 'red', 'capacity': 200, 'price': 5, 'k': 1}", 
+                "B C {'color': 'blue', 'capacity': 160, 'price': 10, 'k': 1}", 
+                "B C {'color': 'green', 'capacity': 120, 'price': 15, 'k': 1}", 
+                "C D {'color': 'red', 'capacity': 200, 'price': 5, 'k': 1}", 
+                "C D {'color': 'blue', 'capacity': 160, 'price': 10, 'k': 1}", 
+                "C D {'color': 'green', 'capacity': 120, 'price': 15, 'k': 1}", 
+                "D E {'color': 'red', 'capacity': 100, 'price': 5, 'k': 1}", 
+                "D F {'color': 'blue', 'capacity': 160, 'price': 10, 'k': 1}", 
+                "D G {'color': 'green', 'capacity': 120, 'price': 15, 'k': 1}" 
             ]
         },
 
@@ -23,29 +23,44 @@
             "nodes": [
                 "A", "B", "C", "D", "E", "F", "G","H","I"
             ],
-            "edges": [
-                {"v1": "A", "v2": "C", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "A", "v2": "B", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "A", "v2": "H", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "B", "v2": "C", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "B", "v2": "I", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "C", "v2": "D", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "C", "v2": "E", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "D", "v2": "F", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "D", "v2": "G", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "E", "v2": "F", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "E", "v2": "H", "data": {"color":"Bus","capacity":200,"price":5}},
-                {"v1": "G", "v2": "I", "data": {"color":"Bus","capacity":200,"price":5}}
+            "edge_list": [
+                "A C {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}",
+                "A B {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}",
+                "A H {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "B C {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "B I {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "C D {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "C E {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "D F {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "D G {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "E F {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "E H {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}", 
+                "G I {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2}"
             ]
         }
     ],
 
     "demands": [ 
-        {"s": "A", "t": "E", "d": 400},
-        {"s": "B", "t": "D", "d": 300},
-        {"s": "C", "t": "E", "d": 200}
+        {"s": "A", "t": "C", "d": 120},
+        {"s": "A", "t": "B", "d": 60},
+        {"s": "A", "t": "H", "d": 30},
+        {"s": "A", "t": "D", "d": 100},
+        {"s": "A", "t": "E", "d": 50},
+        {"s": "B", "t": "C", "d": 60},
+        {"s": "B", "t": "I", "d": 10},
+        {"s": "B", "t": "G", "d": 5},
+        {"s": "B", "t": "D", "d": 40},
+        {"s": "B", "t": "E", "d": 20},
+        {"s": "C", "t": "E", "d": 20},
+        {"s": "E", "t": "F", "d": 30},
+        {"s": "I", "t": "G", "d": 10},
+        {"s": "H", "t": "C", "d": 20},
+        {"s": "H", "t": "D", "d": 20},
+        {"s": "G", "t": "D", "d": 20},
+        {"s": "I", "t": "D", "d": 30},
+        {"s": "I", "t": "C", "d": 30}
     ],
 
-    "k":{"Metro":{"red":1,"blue":1,"green":1},"Bus":2}
+    "k":{"red":1,"blue":1,"green":1,"Bus":2}
 
 }

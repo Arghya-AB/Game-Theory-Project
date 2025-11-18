@@ -4,45 +4,41 @@ from experiment import runExperiments
 from graphParser import parseGraph, writeGraphToJSON, parseRoutes
 from z3 import  sat, Optimize 
 from solverUtils import (getAllPossibleRoutes, addVarsForSolver, 
-                        getUpdatedGraphAndSolution, trySolvingFeasibility, Strategy)
+                        UpdateGraphAndGetSolution)
+from solveStrategy import trySolvingFeasibility, Strategy
 import networkx as nx
 
-def solveUnknownPrices(graph, demands, R_ij):
+def solveUnknownPrices(graph, demands, R_ij) -> dict:
     """ 
     Solves the constrained optimization problem to find flows and unknown prices.
     
     --Outputs--
-    graph (nx.MultiGraph): Returns the final graph with updated prices after all the routes.
     solution (dict): Returns the dict of solved variables
     """
     solver = Optimize()
     solver.set(timeout=2000) # 20 seconds timeout
     # Add variables 
-    graph, f_R_vars = addVarsForSolver(graph, R_ij)
+    f_R_vars = addVarsForSolver(graph, R_ij)
     # The graph.edges now has price vars (if price was null) and flow vars (f_e) added to each edge.
-    # Check SAT with Optmisation 
-    model, isSolved = trySolvingFeasibility(Strategy.OPTIMIZE,
-                                             graph,
-                                             R_ij,
-                                             f_R_vars,
-                                             demands,
-                                             solver)
-
-    if isSolved:
-        graph, solution = getUpdatedGraphAndSolution(graph, model)
-    else:
-         # Try Manual High to Low setting to see if matches
-        model, isSolved = trySolvingFeasibility(Strategy.HIGHTOLOW,
-                                                graph,
-                                                R_ij,
-                                                f_R_vars,
-                                                demands,
-                                                solver)
+    # Check SAT with Optmisation
+    strategies = [Strategy.OPTIMIZE, Strategy.HIGHTOLOW]
+    
+    for strategy in strategies:
+        model, isSolved = trySolvingFeasibility(strategy,
+                                            graph,
+                                            R_ij,
+                                            f_R_vars,
+                                            demands,
+                                            solver)
         if isSolved:
-            graph, solution = getUpdatedGraphAndSolution(graph, model, f_R_vars)
-        else:
-            print("Failed to solve for unknown prices.")
-            return graph, None
+            logger.info(f"Feasibility solved with {str(strategy)} Strategy")
+            solution = UpdateGraphAndGetSolution(graph, model, f_R_vars)
+            return solution
+    
+    if not isSolved:
+        logger.info("Failed to solve for unknown prices.")
+        return None
+
         
 
 def dynamicPricing(inputGraph, routesAdded, resultsFile):
@@ -56,24 +52,29 @@ def dynamicPricing(inputGraph, routesAdded, resultsFile):
 
     # Parse the input graph to create a networkx MultiGraph and demands
     graph, demands = parseGraph(inputGraph)
-    logging.info("Graph parsed")
+    logger.info("Graph parsed")
     # Parse the routesAdded JSON file 
-    routes = parseRoutes(routesAdded)
+    new_routes = parseRoutes(routesAdded)
+    logger.info("Routes Parsed")
 
-    for route in routes:
+    for route in new_routes.edges(data=True):
         # Update the graph with new edges
         u, v, attr = route
         graph.add_edge(u, v, **attr)
         # Get Available Routes for each demand
-        graph, R_ij = getAllPossibleRoutes(graph, demands) 
+        R_ij = getAllPossibleRoutes(graph, demands)
+        logger.info(f"Calculated All Possible Routes for source Destination Pairs after adding {str(u)}-> {str(v)}") 
         # Recalculate prices 
-        graph, solution =  solveUnknownPrices(graph, demands, R_ij)
+        solution =  solveUnknownPrices(graph, demands, R_ij)
         if solution is not None:
-            runExperiments(graph, solution, resultsFile)
+            logger.info("Solved Unknown Prices for the Routes")
+            # runExperiments(graph, solution, resultsFile)
+            pass
     
     # append the final graph to the results file. 
     writeGraphToJSON(graph, resultsFile)
-    pass
+    logger.info("Wrote final Graph ResultsFile")
+
 
 
 
@@ -104,10 +105,9 @@ if __name__ == "__main__":
         help='logging level : info, warning, debug'
     )
     args = parser.parse_args()
-
+    # Set up logging
     logger = logging.getLogger(__name__)
     logging.basicConfig(level = getattr(logging, args.logging.upper()))
-
     # run the tool
     dynamicPricing(args.inputGraph, args.routesAdded, args.resultsFile)
 

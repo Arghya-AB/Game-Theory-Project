@@ -1,24 +1,5 @@
 {
-  "edges": [
-    {
-      "v1": "A",
-      "v2": "E",
-      "data": {
-        "k": 1.0,
-        "color": "red",
-        "capacity": 80,
-        "price": null
-      }
-    },
-    {
-      "v1": "B",
-      "v2": "G",
-      "data": {
-        "k": 0.8,
-        "color": "green",
-        "capacity": 80,
-        "price": null
-      }
-    }
-  ]
+  "edge_list": [
+    "A B {'k': 1, 'color': 'yellow', 'capacity': 100, 'price': None}"
+]
 }

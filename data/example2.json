@@ -3,53 +3,48 @@
     {
       "name": "Metro",
       "nodes": [
-        "A", "B", "C", "D", "E"
+        "A", "B", "C", "D"
       ],
-      "edges": [
-        { "v1": "A", "v2": "C", "data": { "color": "red", "capacity": 100, "price": 5 } },
-        { "v1": "C", "v2": "D", "data": { "color": "red", "capacity": 100, "price": 5 } },
-        { "v1": "D", "v2": "E", "data": { "color": "red", "capacity": 100, "price": 5 } },
-        { "v1": "B", "v2": "C", "data": { "color": "blue", "capacity": 80, "price": 10 } },
-        { "v1": "C", "v2": "D", "data": { "color": "blue", "capacity": 80, "price": 10 } },
-        { "v1": "B", "v2": "C", "data": { "color": "green", "capacity": 60, "price": 15 } }
-      ]
+      "edge_list": [
+    "B C {'color': 'blue', 'capacity': 7, 'price': None}",
+    "C D {'color': 'blue', 'capacity': 7, 'price': None}"
+]
     },
     {
       "name": "Bus",
       "nodes": [
-        "A", "B", "C", "D", "E"
+        "A", "C", "D"
       ],
-      "edges": [
-        { "v1": "A", "v2": "B", "data": { "color": "Bus", "capacity": 200, "price": 5 } },
-        { "v1": "A", "v2": "C", "data": { "color": "Bus", "capacity": 200, "price": 5 } },
-        { "v1": "C", "v2": "E", "data": { "color": "Bus", "capacity": 200, "price": 5 } },
-        { "v1": "D", "v2": "E", "data": { "color": "Bus", "capacity": 200, "price": 5 } }
-      ]
+      "edge_list": [
+    "A C {'color': 'Bus', 'capacity': 200, 'price': 20}",
+    "A D {'color': 'Bus', 'capacity': 200, 'price': 30}"
+]
     }
   ],
   "demands": [
     {
       "s": "A",
-      "t": "E",
-      "d": 400
+      "t": "C",
+      "d": 2
+    },
+    {
+      "s": "A",
+      "t": "D",
+      "d": 8
     },
     {
       "s": "B",
-      "t": "D",
-      "d": 300
+      "t": "C",
+      "d": 4
     },
     {
       "s": "C",
-      "t": "E",
-      "d": 200
+      "t": "D",
+      "d": 2
     }
   ],
   "k": {
-    "Metro": {
-      "red": 1,
       "blue": 1,
-      "green": 1
-    },
-    "Bus": 2
-  }
+      "yellow": 1,
+      "Bus": 2}
 }

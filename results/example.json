@@ -1,269 +1,31 @@
 {
-    "graphs": [
+    "networks": [
         {
-            "directed": false,
-            "multigraph": true,
-            "graph": {},
-            "nodes": [
-                {
-                    "id": "A"
-                },
-                {
-                    "id": "B"
-                },
-                {
-                    "id": "C"
-                },
-                {
-                    "id": "D"
-                },
-                {
-                    "id": "E"
-                },
-                {
-                    "id": "F"
-                },
-                {
-                    "id": "G"
-                },
-                {
-                    "id": "H"
-                },
-                {
-                    "id": "I"
-                }
-            ],
-            "edges": [
-                {
-                    "color": "red",
-                    "capacity": 100,
-                    "price": 5,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "A",
-                    "target": "C",
-                    "key": 0
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "A",
-                    "target": "C",
-                    "key": 1
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "A",
-                    "target": "B",
-                    "key": 0
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "A",
-                    "target": "H",
-                    "key": 0
-                },
-                {
-                    "k": 1.0,
-                    "color": "red",
-                    "capacity": 80,
-                    "price": null,
-                    "f_e": null,
-                    "source": "A",
-                    "target": "E",
-                    "key": 0
-                },
-                {
-                    "color": "blue",
-                    "capacity": 80,
-                    "price": 10,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "B",
-                    "target": "C",
-                    "key": 0
-                },
-                {
-                    "color": "green",
-                    "capacity": 60,
-                    "price": 15,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "B",
-                    "target": "C",
-                    "key": 1
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "B",
-                    "target": "C",
-                    "key": 2
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "B",
-                    "target": "I",
-                    "key": 0
-                },
-                {
-                    "k": 0.8,
-                    "color": "green",
-                    "capacity": 80,
-                    "price": null,
-                    "f_e": null,
-                    "source": "B",
-                    "target": "G",
-                    "key": 0
-                },
-                {
-                    "color": "red",
-                    "capacity": 100,
-                    "price": 5,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "C",
-                    "target": "D",
-                    "key": 0
-                },
-                {
-                    "color": "blue",
-                    "capacity": 80,
-                    "price": 10,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "C",
-                    "target": "D",
-                    "key": 1
-                },
-                {
-                    "color": "green",
-                    "capacity": 60,
-                    "price": 15,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "C",
-                    "target": "D",
-                    "key": 2
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "C",
-                    "target": "D",
-                    "key": 3
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "C",
-                    "target": "E",
-                    "key": 0
-                },
-                {
-                    "color": "red",
-                    "capacity": 100,
-                    "price": 5,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "D",
-                    "target": "E",
-                    "key": 0
-                },
-                {
-                    "color": "blue",
-                    "capacity": 80,
-                    "price": 10,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "D",
-                    "target": "F",
-                    "key": 0
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "D",
-                    "target": "F",
-                    "key": 1
-                },
-                {
-                    "color": "green",
-                    "capacity": 60,
-                    "price": 15,
-                    "k": 1,
-                    "f_e": null,
-                    "source": "D",
-                    "target": "G",
-                    "key": 0
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "D",
-                    "target": "G",
-                    "key": 1
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "E",
-                    "target": "F",
-                    "key": 0
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "E",
-                    "target": "H",
-                    "key": 0
-                },
-                {
-                    "color": "Bus",
-                    "capacity": 200,
-                    "price": 5,
-                    "k": 2,
-                    "f_e": null,
-                    "source": "G",
-                    "target": "I",
-                    "key": 0
-                }
+            "name": "Combined",
+            "edge_list": [
+                "A C {'color': 'red', 'capacity': 200, 'price': 5, 'k': 1, 'f_e': None}",
+                "A C {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "A B {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "A H {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "A E {'k': 1, 'color': 'red', 'capacity': 80, 'price': None, 'f_e': None}",
+                "C B {'color': 'blue', 'capacity': 160, 'price': 10, 'k': 1, 'f_e': None}",
+                "C B {'color': 'green', 'capacity': 120, 'price': 15, 'k': 1, 'f_e': None}",
+                "C B {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "C D {'color': 'red', 'capacity': 200, 'price': 5, 'k': 1, 'f_e': None}",
+                "C D {'color': 'blue', 'capacity': 160, 'price': 10, 'k': 1, 'f_e': None}",
+                "C D {'color': 'green', 'capacity': 120, 'price': 15, 'k': 1, 'f_e': None}",
+                "C D {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "C E {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "B I {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "B G {'k': 1, 'color': 'green', 'capacity': 80, 'price': None, 'f_e': None}",
+                "D E {'color': 'red', 'capacity': 100, 'price': 5, 'k': 1, 'f_e': None}",
+                "D F {'color': 'blue', 'capacity': 160, 'price': 10, 'k': 1, 'f_e': None}",
+                "D F {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "D G {'color': 'green', 'capacity': 120, 'price': 15, 'k': 1, 'f_e': None}",
+                "D G {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "E F {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "E H {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}",
+                "G I {'color': 'Bus', 'capacity': 500, 'price': 5, 'k': 2, 'f_e': None}"
             ]
         }
     ]

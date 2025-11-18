@@ -1,45 +1,41 @@
-
 import json
 import networkx as nx
+import logging
 from networkx.readwrite import json_graph
 from z3 import is_expr 
 import os
 
-def parseGraph(inputfile, includeDemands=True) -> list[tuple]:
-    """ Create a  networkx.multiGraph and a list of demands(source,target,demand) from a JSON file."""
+
+def parseGraph(
+    inputfile: str, includeDemands=True
+) -> tuple[nx.MultiGraph, list[tuple]] | nx.MultiGraph | FileNotFoundError:
+    """Create a  networkx.multiGraph and a list of demands(source,target,demand) from a JSON file."""
     # read the JSON file
     try:
-        with open(inputfile, 'r') as f:
+        with open(inputfile, "r") as f:
             data = json.load(f)
     except FileNotFoundError:
-        print(f"Error: The file {inputfile} was not found.")
-        return None
-    nodes = []
-    edges = []
+        logging.error(f"Error: The file {inputfile} was not found.")
+        raise
+    edge_list = []
     # for every network in networks
-    for network in data.get('networks'):
-        #add nodes 
-        nodes.extend(network.get("nodes"))
-        # add edges with attributes
-        for edge in network.get("edges"):
-            # add k to edges from JSON root
-            if "k" not in edge.get("data"):
-                if network.get("name") == "Metro":
-                    edge.get("data")["k"] = data.get("k")["Metro"][edge.get("data")["color"]]
-                if network.get("name") == "Bus":
-                    edge.get("data")["k"] = data.get("k")["Bus"]
-            edges += [(edge.get("v1"), edge.get("v2"), edge.get("data"))]
-    # Make Multi grpah 
-    graph = nx.MultiGraph()
-    graph.add_nodes_from(nodes)
-    graph.add_edges_from(edges)
+    for network in data.get("networks"):
+        # add edges to edge list
+        edge_list.extend(network.get("edge_list"))
+    # Make Multi grpah
+    graph = nx.parse_edgelist(edge_list, create_using=nx.MultiGraph)
+    # add k if not present in an edge
+    for u ,v, edge_data in graph.edges(data=True):
+        if not edge_data.get("k"):
+            edge_data["k"] = data.get("k")[edge_data.get("color")]
 
     if includeDemands:
         # return graph and demands
         return graph, data.get("demands")
     else:
-        # return graph 
+        # return graph
         return graph
+
 
 def writeGraphToJSON(graph, outputfile):
     """ 
@@ -52,40 +48,26 @@ def writeGraphToJSON(graph, outputfile):
         for key, value in list(data.items()):
             if is_expr(value):
                 data[key] = None
-    for u, v, key, data in clean_graph.edges(keys=True, data=True):
+    for u, v, data in clean_graph.edges(data=True):
         clean_attributes(data)
-    new_graph_data = json_graph.node_link_data(clean_graph,edges="edges")
-    if os.path.exists(outputfile):
-        with open(outputfile, 'r') as f:
-            file_data = json.load(f)
-        graphs_list = file_data.get('graphs')
-        if isinstance(graphs_list, list):
-            graphs_list.append(new_graph_data)
-        else:
-            file_data['graphs'] = [new_graph_data]
-            
-        with open(outputfile, 'w') as f:
-            json.dump(file_data, f, indent=4)
-    else:
-        # File doesn't exist, create initial structure
-        data = {
-            "graphs": [new_graph_data]
-        }
-        # Use 'w' to create if it doesn't exist
-        with open(outputfile, 'w') as f:
-            json.dump(data, f, indent=4)
+    edge_list = []
+    for line in nx.generate_edgelist(clean_graph, data=True):
+        edge_list.extend([line])
+
+    new_graph_data = {"networks":[{"name":"Combined", "edge_list": edge_list}]}
+    # Use 'w' to create if it doesn't exist
+    with open(outputfile, 'w') as f:
+        json.dump(new_graph_data, f, indent=4)
 
 
-def parseRoutes(routesAdded):
-    "read the JSON file and return the ordered list of edges added"
+def parseRoutes(routesAdded) -> FileNotFoundError| nx.MultiGraph:
+    "read the JSON file and return the extension graph i.e the edges that are getting added"
     try:
         with open(routesAdded, 'r') as f:
             data = json.load(f)
     except FileNotFoundError:
         print(f"Error: The file {routesAdded} was not found.")
-        return None
-    edges = []
-    for edge in data.get('edges'):
-        edges += [(edge.get("v1"), edge.get("v2"), edge.get("data"))]
+        raise
+    new_routes = nx.parse_edgelist(data.get("edge_list"), create_using=nx.MultiGraph)
     
-    return edges
+    return new_routes

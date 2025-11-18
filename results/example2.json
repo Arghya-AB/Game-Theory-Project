@@ -1,0 +1,14 @@
+{
+    "networks": [
+        {
+            "name": "Combined",
+            "edge_list": [
+                "B C {'color': 'blue', 'capacity': 7, 'price': '24', 'k': 1, 'f_e': '3'}",
+                "B A {'k': 1, 'color': 'yellow', 'capacity': 100, 'price': '6', 'f_e': '2'}",
+                "C D {'color': 'blue', 'capacity': 7, 'price': '60', 'k': 1, 'f_e': '1'}",
+                "C A {'color': 'Bus', 'capacity': 200, 'price': 20, 'k': 2, 'f_e': '1.5'}",
+                "D A {'color': 'Bus', 'capacity': 200, 'price': 30, 'k': 2, 'f_e': '0'}"
+            ]
+        }
+    ]
+}
