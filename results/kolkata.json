@@ -6,10 +6,10 @@
                 "Dakshineshwar Baranagar {'color': 'blue', 'capacity': 4929, 'price': 10, 'k': 1, 'f_e': '0'}",
                 "Dakshineshwar Dum_Dum {'color': 'Bus', 'capacity': 4929, 'price': 20, 'k': 2, 'f_e': '499.5'}",
                 "Baranagar Noapara {'color': 'blue', 'capacity': 4929, 'price': 10, 'k': 1, 'f_e': '501'}",
-                "Baranagar Mangal_pandey {'k': 1, 'capacity': 4929, 'price': 100, 'color': 'personal', 'f_e': '498'}",
-                "Baranagar Mangal_pandey {'color': 'pink', 'capacity': 2000, 'price': 594.0, 'k': 1, 'f_e': '2'}",
+                "Baranagar Mangal_pandey {'k': 1, 'capacity': 4929, 'price': 100, 'color': 'personal', 'f_e': '500'}",
+                "Baranagar Mangal_pandey {'color': 'pink', 'capacity': 2000, 'price': 1600.0, 'k': 1, 'f_e': '0'}",
                 "Baranagar Barasat {'k': 1, 'capacity': 4929, 'price': 100, 'color': 'personal', 'f_e': '0'}",
-                "Noapara Dum_Dum {'color': 'blue', 'capacity': 4929, 'price': 10, 'k': 1, 'f_e': '501'}",
+                "Noapara Dum_Dum {'color': 'blue', 'capacity': 4929, 'price': 10, 'k': 1, 'f_e': '501.5'}",
                 "Noapara Jai_Hind {'color': 'yellow', 'capacity': 4929, 'price': 20, 'k': 1, 'f_e': '0'}",
                 "Dum_Dum Esplanade {'color': 'blue', 'capacity': 4929, 'price': 10, 'k': 1, 'f_e': '0'}",
                 "Dum_Dum Esplanade {'color': 'Bus', 'capacity': 4929, 'price': 25, 'k': 2, 'f_e': '0'}",
@@ -24,7 +24,7 @@
                 "Park_Street Rabinder_Sarobar {'color': 'blue', 'capacity': 4929, 'price': 10, 'k': 1, 'f_e': '0'}",
                 "Park_Street Majherhat {'color': 'purple', 'capacity': 4929, 'price': 25, 'k': 1, 'f_e': '0'}",
                 "Rabinder_Sarobar Kavi_Subhash {'color': 'blue', 'capacity': 4929, 'price': 10, 'k': 1, 'f_e': '0'}",
-                "Kavi_Subhash Beleghata {'color': 'orange', 'capacity': 4929, 'price': 20, 'k': 1, 'f_e': '582.5'}",
+                "Kavi_Subhash Beleghata {'color': 'orange', 'capacity': 4929, 'price': 20, 'k': 1, 'f_e': '583'}",
                 "Kavi_Subhash Mangal_pandey {'k': 1, 'capacity': 4929, 'price': 100, 'color': 'personal', 'f_e': '418'}",
                 "Howrah_Maidan Santragachi {'color': 'Bus', 'capacity': 4929, 'price': 20, 'k': 2, 'f_e': '0'}",
                 "Sealdah Salt_Lake {'color': 'green', 'capacity': 4929, 'price': 20, 'k': 1, 'f_e': '0'}",
@@ -35,7 +35,7 @@
                 "Salt_Lake Beleghata {'color': 'orange', 'capacity': 4929, 'price': 25, 'k': 1, 'f_e': '0'}",
                 "Majherhat Diamond_Park {'color': 'purple', 'capacity': 4929, 'price': 20, 'k': 1, 'f_e': '0'}",
                 "Majherhat Jadavpur_8B {'color': 'Bus', 'capacity': 4929, 'price': 20, 'k': 2, 'f_e': '0'}",
-                "Jai_Hind Barasat {'color': 'yellow', 'capacity': 4929, 'price': 1800.0, 'k': 1, 'f_e': '0'}",
+                "Jai_Hind Barasat {'color': 'yellow', 'capacity': 4929, 'price': 1802.0, 'k': 1, 'f_e': '0'}",
                 "Karunamoyee Barasat {'color': 'Bus', 'capacity': 4929, 'price': 20, 'k': 2, 'f_e': '0'}"
             ]
         }

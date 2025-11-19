@@ -25,6 +25,7 @@ def solveUnknownPrices(graph, demands, R_ij) -> dict:
     #  
     strategies = [Strategy.OPTIMIZE, Strategy.HIGHTOLOW, Strategy.HIGHTOLOW_WO,
                   Strategy.INCCAPACITY, Strategy.BSCAPACITY]
+    # strategies = [Strategy.OPTIMIZE, Strategy.BSCAPACITY]
     
     for strategy in strategies:
         model, isSolved = trySolvingFeasibility(strategy,
