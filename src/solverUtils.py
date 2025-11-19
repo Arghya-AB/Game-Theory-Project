@@ -296,7 +296,7 @@ def UpdateGraphAndGetSolution(graph, model, f_R_vars):
         # Update price (if it was a Z3 variable)
         price_var = data['price']
         if is_expr(price_var):
-            data['price'] = model.evaluate(price_var).as_decimal(5)
+            data['price'] = float(model.evaluate(price_var).as_decimal(5))
     # 3. Add other Z3 variables to solution
     # solution["solved_vars"] = {str(d): model[d] for d in model}
 

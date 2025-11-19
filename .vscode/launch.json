@@ -4,14 +4,27 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "name": "Run Dynamic Pricing for example1",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/dynamicPricing.py",
+            "console": "integratedTerminal",
+            "args": ["data/example.json",
+                "data/exampleRouteExt.json",
+                "results/example.json"]
+        },
         {
             "name": "Run Dynamic Pricing",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/dynamicPricing.py",
             "console": "integratedTerminal",
-            "args": ["data/example.json", "data/exampleRouteExt.json", "results/examplev1.json"]
+            "args": [
+                "data/kolkata.json",
+                "data/kolkataExt.json",
+                "results/kolkata.json"
+            ]
             // "args":  "${command:pickArgs}"
         }
     ]

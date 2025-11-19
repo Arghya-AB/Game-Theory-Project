@@ -53,16 +53,16 @@
                 "Sealdah"
             ],
             "edge_list":[
-                "Howrah_Maidan Esplanade {'color': 'Bus', 'capacity': 4000, 'price': 10, 'k': 2}",
-                "Esplanade Sealdah {'color': 'Bus', 'capacity': 4000, 'price': 10, 'k': 2}",
-                "Sealdah Karunamoyee {'color': 'Bus', 'capacity': 4000, 'price': 10, 'k': 2}",
-                "Karunamoyee Barasat {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
-                "Dakshineshwar Dum_Dum {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
-                "Majherhat Jadavpur_8B {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
-                "Jadavpur_8B Sealdah {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
-                "Santragachi Howrah_Maidan {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
-                "Santragachi Esplanade {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
-                "Esplanade Babughat {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}"
+                "Howrah_Maidan Esplanade {'color': 'Bus', 'capacity': 2000, 'price': 10, 'k': 2}",
+                "Esplanade Sealdah {'color': 'Bus', 'capacity': 2000, 'price': 10, 'k': 2}",
+                "Sealdah Karunamoyee {'color': 'Bus', 'capacity': 2000, 'price': 10, 'k': 2}",
+                "Karunamoyee Barasat {'color': 'Bus', 'capacity': 2000, 'price': 20, 'k': 2}",
+                "Dakshineshwar Dum_Dum {'color': 'Bus', 'capacity': 2000, 'price': 20, 'k': 2}",
+                "Majherhat Jadavpur_8B {'color': 'Bus', 'capacity': 2000, 'price': 20, 'k': 2}",
+                "Jadavpur_8B Sealdah {'color': 'Bus', 'capacity': 2000, 'price': 20, 'k': 2}",
+                "Santragachi Howrah_Maidan {'color': 'Bus', 'capacity': 2000, 'price': 20, 'k': 2}",
+                "Santragachi Esplanade {'color': 'Bus', 'capacity': 2000, 'price': 20, 'k': 2}",
+                "Esplanade Babughat {'color': 'Bus', 'capacity': 2000, 'price': 20, 'k': 2}"
             ]
         }
     ],

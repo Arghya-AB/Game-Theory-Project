@@ -22,7 +22,9 @@ def solveUnknownPrices(graph, demands, R_ij) -> dict:
     f_R_vars = addVarsForSolver(graph, R_ij)
     # The graph.edges now has price vars (if price was null) and flow vars (f_e) added to each edge.
     # Check SAT with Optmisation
-    strategies = [Strategy.OPTIMIZE, Strategy.HIGHTOLOW, Strategy.HIGHTOLOW_WO]
+    #  
+    strategies = [Strategy.OPTIMIZE, Strategy.HIGHTOLOW, Strategy.HIGHTOLOW_WO,
+                  Strategy.INCCAPACITY, Strategy.BSCAPACITY]
     
     for strategy in strategies:
         model, isSolved = trySolvingFeasibility(strategy,
@@ -71,7 +73,7 @@ def dynamicPricing(inputGraph, routesAdded, resultsFile):
             logger.info("Solved Unknown Prices for the Routes")
             # runExperiments(graph, solution, resultsFile)
         else:
-            logger.info("Unknown Prices Not Solved Setting a high value: {}")
+            logger.info(f"Strategies failed: Setting a high value: {PRICE_HIGH}")
             for u, v, data in graph.edges(data=True):
                 price_var = data['price']
                 if is_expr(price_var):
@@ -80,7 +82,7 @@ def dynamicPricing(inputGraph, routesAdded, resultsFile):
     # append the final graph to the results file. 
     if solution is not None:
         writeGraphToJSON(graph, resultsFile)
-        logger.info("Wrote final Graph ResultsFile")
+        logger.info(f"Wrote final Graph {resultsFile}")
 
 
 
