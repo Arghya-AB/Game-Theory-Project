@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/dynamicPricing.py",
             "console": "integratedTerminal",
-            "args": ["data/example.json", "data/exampleRouteExt.json", "results/example.json"]
+            "args": ["data/example.json", "data/exampleRouteExt.json", "results/examplev1.json"]
             // "args":  "${command:pickArgs}"
         }
     ]

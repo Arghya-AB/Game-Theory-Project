@@ -27,7 +27,7 @@ def compute_route_price(graph, route_edges):
         price_terms.append(price)
     if any([is_expr(price_term) for price_term in price_terms]):
         return Sum(price_terms)
-    return sum(price_terms)
+    return sum([float(price_term) for price_term in price_terms])
     
 def getAllPossibleRoutes(graph:nx.MultiGraph,
                         demands: list[dict], 
@@ -49,13 +49,13 @@ def getAllPossibleRoutes(graph:nx.MultiGraph,
         all_edge_paths_for_demand = []
         s = demand['s']
         t = demand['t']
-        # 1. Find all node paths within the cutoff
-        node_paths = list(nx.all_simple_paths(graph, source=s, target=t, cutoff=max_hops)) 
-        min_length = min(len(sublist) for sublist in node_paths)
-        # prune duplicates and also len of paths greater than min_length
-        # reason: if A-B exists why take A-C-D-B
-        node_paths = [list(sublist_tuple) 
-                      for sublist_tuple in set(tuple(sublist) for sublist in node_paths if len(sublist) == min_length)]
+        # if source or destination not in graph add edge
+        if s not in graph or t not in graph:
+            node_paths = []
+        else:
+            # 1. Find all node paths within the cutoff
+            node_paths = list(nx.all_simple_paths(graph, source=s, target=t, cutoff=max_hops)) 
+
         if not node_paths:
             # Add default edge if no path exists
             # Define the attributes for the new edge
@@ -69,9 +69,15 @@ def getAllPossibleRoutes(graph:nx.MultiGraph,
             all_edge_paths_for_demand.append(default_route)
             R_ij.append(all_edge_paths_for_demand)
             continue
-
+        else:
+            min_length = min(len(sublist) for sublist in node_paths)
+            # prune duplicates and also len of paths greater than min_length
+            # reason: if A-B exists why take A-C-D-B
+            node_paths = [list(sublist_tuple) 
+                        for sublist_tuple in set(tuple(sublist) for sublist in node_paths if len(sublist) == min_length)]
         # 2. Iterate over each node path and generate edge combinations
         for path in node_paths:
+
             temp_list = []
             # Iterate over consecutive nodes in the path: (path[i], path[i+1])
             for i in range(len(path) - 1):
@@ -180,6 +186,8 @@ def addC3C4Constraints(graph, R_ij,f_R_vars,demands,solver):
     TOLERANCE_FLOW = 1
     TOLERANCE_COST = 5
     for i, demand in enumerate(demands):
+        if demand["s"] not in graph or demand["t"] not in graph:
+            continue 
         # 1. C3: Demand conservation
         d_i = demand["d"]
         f_R_sum = Sum(f_R_vars[i])
@@ -211,7 +219,34 @@ def addC3C4Constraints(graph, R_ij,f_R_vars,demands,solver):
                 And(price_R >= T_i - TOLERANCE_COST)
             )) 
 
-
+def addSimpleC3C4(graph, R_ij,f_R_vars,demands,solver):
+    """Adds Fallback C3C4 if above C3C4 fave unsat"""
+    T_i_vars = [] 
+    # TOLERANCE_FLOW = 1
+    TOLERANCE_COST = 5
+    for i, demand in enumerate(demands):
+        if demand["s"] not in graph or demand["t"] not in graph:
+            continue 
+        # 1. C3: Demand conservation
+        d_i = demand["d"]
+        f_R_sum = Sum(f_R_vars[i])
+        solver.add(f_R_sum == d_i)
+        
+        # 2. Define the minimum cost variable T_i for this demand group
+        T_i = Real(f"T_{i}") 
+        T_i_vars.append(T_i)
+        
+        # 3. Wardrop's Conditions (C4 & C5)
+        f_R_i_vars = f_R_vars[i]
+        demand_routes = R_ij[i]
+        
+        for j, route_edges in enumerate(demand_routes):
+            cost_R = compute_route_cost(graph, route_edges)
+            # price_R = compute_route_price(graph, route_edges)
+            # C4 (Equality for Used Routes): # fallback all routes used
+            solver.add(
+                And(cost_R <= T_i + TOLERANCE_COST, cost_R >= T_i - TOLERANCE_COST)
+            )
 
 def addConstraints(graph, R_ij, f_R_vars, demands, solver):
     """ Adds constraints to the solver """

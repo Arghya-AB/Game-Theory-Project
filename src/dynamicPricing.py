@@ -2,7 +2,7 @@ import argparse
 import logging
 from experiment import runExperiments 
 from graphParser import parseGraph, writeGraphToJSON, parseRoutes
-from z3 import  sat, Optimize 
+from z3 import  sat, Optimize ,is_expr
 from solverUtils import (getAllPossibleRoutes, addVarsForSolver, 
                         UpdateGraphAndGetSolution)
 from solveStrategy import trySolvingFeasibility, Strategy
@@ -16,13 +16,13 @@ def solveUnknownPrices(graph, demands, R_ij) -> dict:
     solution (dict): Returns the dict of solved variables
     """
     solver = Optimize()
-    solver.set(timeout=2000) # 20 seconds timeout
-    solver.set("smt.random_seed", 42) # for repeatable results
+    solver.set(timeout=2000) # 2 seconds timeout
+    # solver.set("random_seed", 42)# for repeatable results
     # Add variables 
     f_R_vars = addVarsForSolver(graph, R_ij)
     # The graph.edges now has price vars (if price was null) and flow vars (f_e) added to each edge.
     # Check SAT with Optmisation
-    strategies = [Strategy.OPTIMIZE, Strategy.HIGHTOLOW]
+    strategies = [Strategy.OPTIMIZE, Strategy.HIGHTOLOW, Strategy.HIGHTOLOW_WO]
     
     for strategy in strategies:
         model, isSolved = trySolvingFeasibility(strategy,
@@ -50,7 +50,7 @@ def dynamicPricing(inputGraph, routesAdded, resultsFile):
     routesAdded (JSON file): Ordered List of Rotes added to the network. see data/exampleRoutes.json
     resultsFile : Name of file to write results of experiments to. 
     """
-
+    PRICE_HIGH = 25 #if route can be priced by any of the fallback add a high ticket and proceed to next
     # Parse the input graph to create a networkx MultiGraph and demands
     graph, demands = parseGraph(inputGraph)
     logger.info("Graph parsed")
@@ -70,11 +70,17 @@ def dynamicPricing(inputGraph, routesAdded, resultsFile):
         if solution is not None:
             logger.info("Solved Unknown Prices for the Routes")
             # runExperiments(graph, solution, resultsFile)
-            pass
-    
+        else:
+            logger.info("Unknown Prices Not Solved Setting a high value: {}")
+            for u, v, data in graph.edges(data=True):
+                price_var = data['price']
+                if is_expr(price_var):
+                    data['price'] = PRICE_HIGH
+
     # append the final graph to the results file. 
-    writeGraphToJSON(graph, resultsFile)
-    logger.info("Wrote final Graph ResultsFile")
+    if solution is not None:
+        writeGraphToJSON(graph, resultsFile)
+        logger.info("Wrote final Graph ResultsFile")
 
 
 

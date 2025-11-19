@@ -1,0 +1,11 @@
+{
+    "edge_list" : [
+        "Majherhat Park_Street {'color': 'purple', 'capacity': 2000, 'price': None, 'k': 1}",
+        "Park_Street Esplanade {'color': 'purple', 'capacity': 2000, 'price': None, 'k': 1}",
+        "Barasat Jai_Hind {'color': 'yellow', 'capacity': 2000, 'price': None, 'k': 1}",
+        "Jai_Hind Salt_Lake {'color': 'orange', 'capacity': 2000, 'price': None, 'k': 1}",
+        "Salt_Lake Beleghata {'color': 'orange', 'capacity': 2000, 'price': None, 'k': 1}",
+        "Baranagar Mangal_pandey {'color': 'pink', 'capacity': 2000, 'price': None, 'k': 1}",
+        "Dum_Dum Esplanade {'color': 'Bus', 'capacity': 4000, 'price': None, 'k': 2}"
+    ]
+}

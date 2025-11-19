@@ -1,0 +1,158 @@
+{
+    "networks": [
+        {
+            "name":"Metro",
+            "nodes": [
+                "Baranagar",
+                "Beleghata",
+                "Dakshineshwar",
+                "Diamond_Park",
+                "Dum_Dum",
+                "Esplanade",
+                "Howrah_Maidan",
+                "Jai_Hind",
+                "Kavi_Subhash",
+                "Majherhat",
+                "Mangal_pandey",
+                "Noapara",
+                "Park_Street",
+                "Rabinder_Sarobar",
+                "Salt_Lake",
+                "Sealdah"
+            ],
+            "edge_list": [
+                "Dakshineshwar Baranagar {'color': 'blue', 'capacity': 2000, 'price': 10, 'k': 1}",
+                "Baranagar Noapara {'color': 'blue', 'capacity': 2000, 'price': 10, 'k': 1}",
+                "Noapara Dum_Dum {'color': 'blue', 'capacity': 2000, 'price': 10, 'k': 1}",
+                "Dum_Dum Esplanade {'color': 'blue', 'capacity': 2000, 'price': 10, 'k': 1}",
+                "Esplanade Park_Street {'color': 'blue', 'capacity': 2000, 'price': 5, 'k': 1}",
+                "Park_Street Rabinder_Sarobar {'color': 'blue', 'capacity': 2000, 'price': 10, 'k': 1}",
+                "Rabinder_Sarobar Kavi_Subhash {'color': 'blue', 'capacity': 2000, 'price': 10, 'k': 1}",
+                "Howrah_Maidan Esplanade {'color': 'green', 'capacity': 2000, 'price': 20, 'k': 1}",
+                "Esplanade Sealdah {'color': 'green', 'capacity': 2000, 'price': 20, 'k': 1}",
+                "Sealdah Salt_Lake {'color': 'green', 'capacity': 2000, 'price': 20, 'k': 1}",
+                "Majherhat Diamond_Park {'color': 'purple', 'capacity': 2000, 'price': 20, 'k': 1}",
+                "Noapara Jai_Hind {'color': 'yellow', 'capacity': 2000, 'price': 20, 'k': 1}",
+                "Kavi_Subhash Beleghata {'color': 'orange', 'capacity': 2000, 'price': 20, 'k': 1}"
+            ]
+        },
+        
+        {
+            "name": "Bus",
+            "nodes":[
+                "Barasat",
+                "Babughat",
+                "Dakshineshwar",
+                "Dum_Dum",
+                "Esplanade",
+                "Howrah_Maidan",
+                "Jadavpur_8B",
+                "Karunamoyee",
+                "Majherhat",
+                "Santragachi",
+                "Sealdah"
+            ],
+            "edge_list":[
+                "Howrah_Maidan Esplanade {'color': 'Bus', 'capacity': 4000, 'price': 10, 'k': 2}",
+                "Esplanade Sealdah {'color': 'Bus', 'capacity': 4000, 'price': 10, 'k': 2}",
+                "Sealdah Karunamoyee {'color': 'Bus', 'capacity': 4000, 'price': 10, 'k': 2}",
+                "Karunamoyee Barasat {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
+                "Dakshineshwar Dum_Dum {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
+                "Majherhat Jadavpur_8B {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
+                "Jadavpur_8B Sealdah {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
+                "Santragachi Howrah_Maidan {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
+                "Santragachi Esplanade {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}",
+                "Esplanade Babughat {'color': 'Bus', 'capacity': 4000, 'price': 20, 'k': 2}"
+            ]
+        }
+    ],
+
+    "demands": [
+        {
+            "s": "Mangal_pandey",
+            "t": "Baranagar",
+            "d": 200
+        },
+        {
+            "s": "Mangal_pandey",
+            "t": "Jai_Hind",
+            "d": 200
+        },
+        {
+            "s": "Mangal_pandey",
+            "t": "Dum_Dum",
+            "d": 200
+        },
+        {
+            "s": "Mangal_pandey",
+            "t": "Esplanade",
+            "d": 200
+        },
+        {
+            "s": "Mangal_pandey",
+            "t": "Kavi_Subhash",
+            "d": 200
+        },
+        {
+            "s": "Mangal_pandey",
+            "t": "Salt_Lake",
+            "d": 200
+        },
+        {
+            "s": "Barasat",
+            "t": "Baranagar",
+            "d": 200
+        },
+        {
+            "s": "Barasat",
+            "t": "Jai_Hind",
+            "d": 200
+        },
+        {
+            "s": "Barasat",
+            "t": "Dum_Dum",
+            "d": 200
+        },
+        {
+            "s": "Barasat",
+            "t": "Esplanade",
+            "d": 200
+        },
+        {
+            "s": "Barasat",
+            "t": "Kavi_Subhash",
+            "d": 200
+        },
+        {
+            "s": "Kavi_Subhash",
+            "t": "Salt_Lake",
+            "d": 200
+        },
+        {
+            "s": "Kavi_Subhash",
+            "t": "Esplanade",
+            "d": 200
+        },
+        {
+            "s": "Kavi_Subhash",
+            "t": "Dum_Dum",
+            "d": 200
+        },
+        {
+            "s": "Kavi_Subhash",
+            "t": "Beleghata",
+            "d": 200
+        },
+        {
+            "s": "Diamond_Park",
+            "t": "Esplanade",
+            "d": 200
+        }
+
+
+    
+    ],
+
+    "k": {"purple":1,"blue":1,"green":1,"yellow":1,"pink":1,"orange":1,"Bus":2}
+
+}
